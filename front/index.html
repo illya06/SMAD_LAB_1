@@ -13,6 +13,9 @@
     <!-- Cool Style -->
     <link rel="stylesheet" href="../style/style.css">
     <title>SMAD LAB 1</title>
+
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 </head>
 
 <body>
@@ -88,9 +91,25 @@
         </div>
 
         <div id="#graphics" class="row">
+            <canvas id="chart" width="300" height="200">
 
+            </canvas>
         </div>
     </div>
+    <script>
+        let chart = document.getElementById('chart').getContext('2d');
+
+        let massPopChart = new Chart(chart, {
+            type: 'line',
+            data: {
+                labels:['a','b','c','d'],
+                dataset:[{
+                    data: [12,42,73,42,54]
+                }]
+            },
+            options: {}
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
         crossorigin="anonymous"></script>
