@@ -6,15 +6,17 @@ let numbers = (document.getElementById('numbers').value).split(" ").map(Number).
 
 let uniqueNums = Array.from([...new Set(numbers)]);
 let numsFrequency = new Map();
-uniqueNums.map(item =>numsFrequency.set(item, numbers.filter(x => x==item).length));
-
+uniqueNums.map(item => numsFrequency.set(item, numbers.filter(x => x == item).length));
 
 
 function main() {
 
     // mid Statistical
-    let midStatistical = numbers.reduce((a, b) => a + b, 0) / numbers.length;
-    document.getElementById('midStatistical').innerHTML = ` <kbd>${midStatistical}</kbd>`;
+    let midStat = 0;
+    numsFrequency.forEach((apearence, number) => {
+        midStat += (number * apearence) / numbers.length;
+    });
+    document.getElementById('midStatistical').innerHTML = ` <kbd>${midStat}</kbd>`;
 
     //trend
     let trend = numbers.reduce(function (a, b) {
@@ -43,12 +45,13 @@ function main() {
     document.getElementById('span').innerHTML = ` <kbd>${min} - ${max}</kbd>`;
 
     //dispersion
-    let midStat=0;
-    // numsFrequency.forEach((apearence, number) =>{
-    //     alert(midStat);
-    //     midStat += (number*apearence)/uniqueNums.length;
-    // });
-    
+    let dispersion = 0;
+    numsFrequency.forEach((apearence, number) => {
+        dispersion += (number * number * apearence) / numbers.length;
+    });
+    dispersion -= midStat;
+    document.getElementById('dispersion').innerHTML = ` <kbd>${dispersion}</kbd>`;
+
 
     null;
 
