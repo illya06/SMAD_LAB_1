@@ -4,6 +4,12 @@
 
 let numbers = (document.getElementById('numbers').value).split(" ").map(Number).filter(Boolean);
 
+let tempNums = Array.from([...new Set(numbers)]);
+let numsFrequency = tempNums.map(item =>{
+    let numMap = {};
+    numMap[item] = numbers.filter(x => x==item).length;
+    return numMap;
+})
 
 
 function main() {
@@ -39,6 +45,9 @@ function main() {
     document.getElementById('span').innerHTML = ` <kbd>${min} - ${max}</kbd>`;
 
     //dispersion
+    
+    let midStat;
+
     null;
 
     //standard dispersion
