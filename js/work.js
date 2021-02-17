@@ -1,15 +1,9 @@
-const test = true;
 
-if (test) {
-    let numbers = [0.36, 0.38, 0.38, 0.37, 0.40, 0.38, 0.36];
 
-    let numFrequency = new Map([
-        [0.36, 2],
-        [0.37, 1],
-        [0.38, 3],
-        [0.40, 1]
-    ]);
-}
+//numbers = 0.36 0.38 0.38 0.37 0.40 0.38 0.36
+
+let numbers = (document.getElementById('numbers').value).split(" ").map(Number).filter(Boolean);
+
 
 
 function main() {
