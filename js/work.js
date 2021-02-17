@@ -4,12 +4,10 @@
 
 let numbers = (document.getElementById('numbers').value).split(" ").map(Number).filter(Boolean);
 
-let tempNums = Array.from([...new Set(numbers)]);
-let numsFrequency = tempNums.map(item =>{
-    let numMap = {};
-    numMap[item] = numbers.filter(x => x==item).length;
-    return numMap;
-})
+let uniqueNums = Array.from([...new Set(numbers)]);
+let numsFrequency = new Map();
+uniqueNums.map(item =>numsFrequency.set(item, numbers.filter(x => x==item).length));
+
 
 
 function main() {
@@ -45,8 +43,12 @@ function main() {
     document.getElementById('span').innerHTML = ` <kbd>${min} - ${max}</kbd>`;
 
     //dispersion
+    let midStat=0;
+    // numsFrequency.forEach((apearence, number) =>{
+    //     alert(midStat);
+    //     midStat += (number*apearence)/uniqueNums.length;
+    // });
     
-    let midStat;
 
     null;
 
