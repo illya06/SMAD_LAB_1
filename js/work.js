@@ -56,12 +56,19 @@ function main() {
 
     //asymmetry
     calcAsymmetry();
+
+    //excess
+    calcExcess();
+}
+
+function calcExcess(){
+    document.getElementById('asymmetry').innerHTML =
+        ` <kbd>${calcCentralMomentOfK(4, false)/calcInitialMomentOfK(4, false) - 3}</kbd>`;
 }
 
 function calcAsymmetry() {
     document.getElementById('asymmetry').innerHTML =
         ` <kbd>${calcCentralMomentOfK(3, false)/calcInitialMomentOfK(3, false)}</kbd>`;
-
 }
 
 function calcCentralMomentOfK(k, print = true) {
