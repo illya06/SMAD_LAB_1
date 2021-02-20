@@ -62,7 +62,7 @@ function main() {
 }
 
 function calcExcess(){
-    document.getElementById('asymmetry').innerHTML =
+    document.getElementById('excess').innerHTML =
         ` <kbd>${calcCentralMomentOfK(4, false)/calcInitialMomentOfK(4, false) - 3}</kbd>`;
 }
 
