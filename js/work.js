@@ -27,6 +27,9 @@ function main() {
     //trend
     calcTrend();
 
+    //median
+    calcMedian();
+
     //span
     calcSpan();
 
@@ -61,14 +64,14 @@ function main() {
     calcExcess();
 }
 
-function calcExcess(){
+function calcExcess() {
     document.getElementById('excess').innerHTML =
-        ` <kbd>${calcCentralMomentOfK(4, false)/calcInitialMomentOfK(4, false) - 3}</kbd>`;
+        ` <kbd>${calcCentralMomentOfK(4, false) / calcInitialMomentOfK(4, false) - 3}</kbd>`;
 }
 
 function calcAsymmetry() {
     document.getElementById('asymmetry').innerHTML =
-        ` <kbd>${calcCentralMomentOfK(3, false)/calcInitialMomentOfK(3, false)}</kbd>`;
+        ` <kbd>${calcCentralMomentOfK(3, false) / calcInitialMomentOfK(3, false)}</kbd>`;
 }
 
 function calcCentralMomentOfK(k, print = true) {
@@ -77,7 +80,7 @@ function calcCentralMomentOfK(k, print = true) {
         centralMomentOfK += (Math.pow(number - midStat, k) * apearence) / numbers.length;
     });
 
-    if(print){
+    if (print) {
         document.getElementById('centralMoment').innerHTML = ` <kbd>${centralMomentOfK}</kbd>`;
     }
     return centralMomentOfK;
@@ -90,7 +93,7 @@ function calcInitialMomentOfK(k, print = true) {
         initialMomentOfK += (Math.pow(number, k) * apearence) / numbers.length;
     });
 
-    if(print){
+    if (print) {
         document.getElementById('initialMoment').innerHTML = ` <kbd>${initialMomentOfK}</kbd>`;
     }
     return initialMomentOfK;
@@ -141,6 +144,16 @@ function calcTrend() {
         }
     });
     document.getElementById('trend').innerHTML = ` <kbd>${trend}</kbd>`;
+}
+
+function calcMedian() {
+    if (uniqueNums.length % 2 == 0) {
+        document.getElementById('median').innerHTML =
+            ` <kbd>${(uniqueNums[uniqueNums.length / 2 - 1] + uniqueNums[uniqueNums.length / 2]) / 2}</kbd>`;
+    } else {
+        document.getElementById('median').innerHTML =
+            ` <kbd>${uniqueNums[Math.round(uniqueNums.length / 2)]}</kbd>`;
+    }
 }
 
 function calcSpan() {
