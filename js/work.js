@@ -1,62 +1,107 @@
 
 
-//numbers = 0.36 0.38 0.38 0.37 0.40 0.38 0.36
 
-let numbers = (document.getElementById('numbers').value).split(" ").map(Number).filter(Boolean);
+//numbers = 36 38 38 37 40 38 36
+let numbers = (document.getElementById('numbers').value)
+    .split(" ")
+    .map(Number)
+    .filter(Boolean);
 
+//Unique numbers from output
 let uniqueNums = Array.from([...new Set(numbers)]);
-let numsFrequency = new Map();
-uniqueNums.map(item => numsFrequency.set(item, numbers.filter(x => x == item).length));
 
+//Number <-> frequency relation map
+let numsFrequency = new Map();
+uniqueNums.map(
+    item => numsFrequency
+        .set(item, numbers.filter(x => x == item).length)
+);
+
+
+let midStat = 0;
+let dispersion = 0;
+let stdDeviation = 0;
 
 function main() {
-
     // mid Statistical
-    let midStat = 0;
+    calcMidStatistical();
+
+    //dispersion
+    calcDispersion();
+
+    //standardDeviation
+    calcStandardDeviation();
+
+    //correctedStandardDeviation
+    calcCorrectedDispersion();
+
+    //correctedStandardDeviation
+    calcCorrectedStandardDeviation();
+
+    //variation
+    calcVariation();
+
+    //trend
+    calcTrend();
+
+    //span
+    calcSpan();
+}
+
+function calcVariation() {
+    document.getElementById('variation').innerHTML =
+        ` <kbd>${stdDeviation / midStat}</kbd>`;
+}
+
+function calcCorrectedStandardDeviation() {
+    document.getElementById('correctedStandardDeviation').innerHTML =
+        ` <kbd>${stdDeviation * Math.sqrt((numbers.length / (numbers.length - 1)))}</kbd>`;
+}
+
+function calcCorrectedDispersion() {
+    document.getElementById('correctedDispersion').innerHTML =
+        ` <kbd>${dispersion * (numbers.length / (numbers.length - 1))}</kbd>`;
+}
+
+function calcStandardDeviation() {
+    stdDeviation = Math.sqrt(dispersion);
+    document.getElementById('standardDeviation').innerHTML =
+        ` <kbd>${stdDeviation}</kbd>`;
+}
+
+function calcMidStatistical() {
     numsFrequency.forEach((apearence, number) => {
         midStat += (number * apearence) / numbers.length;
     });
     document.getElementById('midStatistical').innerHTML = ` <kbd>${midStat}</kbd>`;
+}
 
-    //trend
-    let trend = numbers.reduce(function (a, b) {
-        return Math.max(a, b);
-    });
-    document.getElementById('trend').innerHTML = ` <kbd>${trend}</kbd>`;
-
-    //median
-    // let temp = numbers;
-    // temp.sort(function(a,b){
-    //     return a-b;
-    //   });
-
-    //   var half = Math.floor(values.length / 2);
-
-    //   if (values.length % 2)
-    //     return values[half];
-
-    //   return (values[half - 1] + values[half]) / 2.0;
-
-    //span
-    let max = trend;
-    let min = numbers.reduce(function (a, b) {
-        return Math.min(a, b);
-    });
-    document.getElementById('span').innerHTML = ` <kbd>${min} - ${max}</kbd>`;
-
-    //dispersion
-    let dispersion = 0;
+function calcDispersion() {
     numsFrequency.forEach((apearence, number) => {
         dispersion += (number * number * apearence) / numbers.length;
     });
     dispersion -= midStat;
     document.getElementById('dispersion').innerHTML = ` <kbd>${dispersion}</kbd>`;
+}
 
+function calcTrend() {
+    let max = 0;
+    let trend = 0;
+    numsFrequency.forEach((apearence, number) => {
+        if (apearence > max) {
+            max = apearence;
+            trend = number;
+        }
+    });
+    document.getElementById('trend').innerHTML = ` <kbd>${trend}</kbd>`;
+}
 
-    null;
-
-    //standard dispersion
-    null;
-
-
+function calcSpan() {
+    let max = numbers.reduce(function (a, b) {
+        return Math.max(a, b);
+    });
+    let min = numbers.reduce(function (a, b) {
+        return Math.min(a, b);
+    });
+    document.getElementById('span').innerHTML = ` <kbd>${min} - ${max}</kbd>`;
 }
