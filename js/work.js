@@ -53,24 +53,40 @@ function main() {
 
     //centralMoment
     calcCentralMomentOfK(0);
-    
+
+    //asymmetry
+    calcAsymmetry();
 }
 
-function calcCentralMomentOfK(k){
+function calcAsymmetry() {
+    document.getElementById('asymmetry').innerHTML =
+        ` <kbd>${0}</kbd>`;
+
+}
+
+function calcCentralMomentOfK(k, print = true) {
     let centralMomentOfK = 0;
     numsFrequency.forEach((apearence, number) => {
-        centralMomentOfK += (Math.pow(number, k) * apearence) / numbers.length;
+        centralMomentOfK += (Math.pow(number - midStat, k) * apearence) / numbers.length;
     });
-    document.getElementById('centralMoment').innerHTML = ` <kbd>${centralMomentOfK}</kbd>`;
+    
+    if(print){
+        document.getElementById('centralMoment').innerHTML = ` <kbd>${centralMomentOfK}</kbd>`;
+    }
+    return centralMomentOfK;
 }
 
 //pass a level you whant from a function
-function calcInitialMomentOfK(k) {
+function calcInitialMomentOfK(k, print = true) {
     let initialMomentOfK = 0;
     numsFrequency.forEach((apearence, number) => {
         initialMomentOfK += (Math.pow(number, k) * apearence) / numbers.length;
     });
-    document.getElementById('initialMoment').innerHTML = ` <kbd>${initialMomentOfK}</kbd>`;
+
+    if(print){
+        document.getElementById('initialMoment').innerHTML = ` <kbd>${initialMomentOfK}</kbd>`;
+    }
+    return initialMomentOfK;
 }
 
 function calcVariation() {
@@ -103,9 +119,8 @@ function calcMidStatistical() {
 
 function calcDispersion() {
     numsFrequency.forEach((apearence, number) => {
-        dispersion += (number * number * apearence) / numbers.length;
+        dispersion += (Math.pow(number - midStat, 2) * apearence) / numbers.length;
     });
-    dispersion -= midStat;
     document.getElementById('dispersion').innerHTML = ` <kbd>${dispersion}</kbd>`;
 }
 
