@@ -23,6 +23,16 @@ let dispersion = 0;
 let stdDeviation = 0;
 
 function main() {
+
+    //variation
+    calcVariation();
+
+    //trend
+    calcTrend();
+
+    //span
+    calcSpan();
+
     // mid Statistical
     calcMidStatistical();
 
@@ -38,14 +48,27 @@ function main() {
     //correctedStandardDeviation
     calcCorrectedStandardDeviation();
 
-    //variation
-    calcVariation();
+    //calcInitialMoment
+    calcCentralMomentOfK(1);
 
-    //trend
-    calcTrend();
+    
+}
 
-    //span
-    calcSpan();
+function calcCentralMomentOfK(k){
+    let centralMomentOfK = 0;
+    numsFrequency.forEach((apearence, number) => {
+        centralMomentOfK += (Math.pow(number, k) * apearence) / numbers.length;
+    });
+    document.getElementById('initialMoment').innerHTML = ` <kbd>${initiacentralMomentOfKlMomentOfK}</kbd>`;
+}
+
+//pass a level you whant from a function
+function calcInitialMomentOfK(k) {
+    let initialMomentOfK = 0;
+    numsFrequency.forEach((apearence, number) => {
+        initialMomentOfK += (Math.pow(number, k) * apearence) / numbers.length;
+    });
+    document.getElementById('initialMoment').innerHTML = ` <kbd>${initialMomentOfK}</kbd>`;
 }
 
 function calcVariation() {
