@@ -24,9 +24,6 @@ let stdDeviation = 0;
 
 function main() {
 
-    //variation
-    calcVariation();
-
     //trend
     calcTrend();
 
@@ -48,9 +45,14 @@ function main() {
     //correctedStandardDeviation
     calcCorrectedStandardDeviation();
 
-    //calcInitialMoment
-    calcCentralMomentOfK(1);
+    //variation
+    calcVariation();
 
+    //calcInitialMoment
+    calcInitialMomentOfK(0);
+
+    //centralMoment
+    calcCentralMomentOfK(0);
     
 }
 
@@ -59,7 +61,7 @@ function calcCentralMomentOfK(k){
     numsFrequency.forEach((apearence, number) => {
         centralMomentOfK += (Math.pow(number, k) * apearence) / numbers.length;
     });
-    document.getElementById('initialMoment').innerHTML = ` <kbd>${initiacentralMomentOfKlMomentOfK}</kbd>`;
+    document.getElementById('centralMoment').innerHTML = ` <kbd>${centralMomentOfK}</kbd>`;
 }
 
 //pass a level you whant from a function
