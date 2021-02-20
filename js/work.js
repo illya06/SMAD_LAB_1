@@ -60,7 +60,7 @@ function main() {
 
 function calcAsymmetry() {
     document.getElementById('asymmetry').innerHTML =
-        ` <kbd>${0}</kbd>`;
+        ` <kbd>${calcCentralMomentOfK(3, false)/calcInitialMomentOfK(3, false)}</kbd>`;
 
 }
 
@@ -69,7 +69,7 @@ function calcCentralMomentOfK(k, print = true) {
     numsFrequency.forEach((apearence, number) => {
         centralMomentOfK += (Math.pow(number - midStat, k) * apearence) / numbers.length;
     });
-    
+
     if(print){
         document.getElementById('centralMoment').innerHTML = ` <kbd>${centralMomentOfK}</kbd>`;
     }
