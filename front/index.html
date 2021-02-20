@@ -20,78 +20,75 @@
 
 <body>
     <div class="container outer">
-        <div id="#params" class="row">
-            <div class="col-4">
-                <h5>
-                    midStatistical
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    trend
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    median
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    span
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    dispersion
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    standard deviation
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    corrected dispersion
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    corrected standard deviation
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    variation
-                </h5>
-            </div>
+        <div class="container">
 
-            <div class="col-4">
-                <h5>
-                    initial moment
-                </h5>
-            </div>
-            <div class="col-4">
-                <h5>
-                    central moment
-                </h5>
-            </div>
+        </div>
+        <div class="input-group input-group-sm mb-5">
+            <span class="input-group-text">ENTER DATA</span>
+            <input type="text" placeholder="0.36 0.38 0.38 0.37 0.40 0.38 0.36" id="numbers" class="form-control">
+            <button type="button" onclick="main()" class="btn  btn-outline-dark">
+                RUN VALUES
+            </button>
+        </div>
 
-            <div class="col-4">
+        <div id="#params" class="mx-auto">
+            <div class="container" style="margin-bottom: 100px;">
                 <h5>
-                    asymmetry
+                    мода <span id="trend"></span>
+                </h5>
+
+                <h5>
+                    медіана <span id="median"></span>
+                </h5>
+
+                <h5>
+                    розмах <span id="span"></span>
                 </h5>
             </div>
-            <div class="col-4">
+            <div class="container" style="margin-bottom: 100px; margin-top: 100px;">
                 <h5>
-                    excess
+                    середнє статистичне <span id="midStatistical" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    дисперсія <span id="dispersion" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    виправлена дисперсія <span id="correctedDispersion" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    середнє квадратичне відхилення <span id="standardDeviation" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    виправлене середнє квадратичне відхилення <span id="correctedStandardDeviation" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    варіація <span id="variation" class="text-end"></span>
+                </h5>
+            </div>
+            <div class="container" style="margin-bottom: 100px;">
+                <h5>
+                    початковий момент <span id="initialMoment" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    центральний момент <span id="centralMoment" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    асиметрія <span id="asymmetry" class="text-end"></span>
+                </h5>
+
+                <h5>
+                    ексцес <span id="excess" class="text-end"></span>
                 </h5>
             </div>
             <div class="container text-center">
-                <button type="button" value="RUN VALUES" class="btn btn-dark btn-lg">
-                    RUN VALUES
-                </button>
+
             </div>
         </div>
 
@@ -101,20 +98,11 @@
             </canvas>
         </div>
     </div>
-    <script>
-        let chart = document.getElementById('chart').getContext('2d');
 
-        let massPopChart = new Chart(chart, {
-            type: 'line',
-            data: {
-                labels:['a','b','c','d'],
-                dataset:[{
-                    data: [12,42,73,42,54]
-                }]
-            },
-            options: {}
-        });
-    </script>
+    <!-- My JS -->
+    <script src="../js/work.js"></script>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
         crossorigin="anonymous"></script>
