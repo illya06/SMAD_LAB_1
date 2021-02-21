@@ -187,6 +187,15 @@ var chart = new Chart(poli, {
             data: uniqueFrequencies,
             lineTension: 0
         }],
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
 });
 
@@ -207,6 +216,15 @@ var chart = new Chart(cum, {
             borderColor: 'black',
             data: dataset
         }],
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
 });
 
@@ -246,11 +264,10 @@ var chart = new Chart(emp, {
     },
     options: {
         scales: {
-            xAxes: [{
-                stacked: true
-            }],
             yAxes: [{
-                stacked: true
+                ticks: {
+                    beginAtZero: true
+                }
             }]
         }
     }
