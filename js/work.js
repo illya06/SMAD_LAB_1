@@ -1,7 +1,7 @@
 
 
 
-//numbers = 0.36 0.38 0.38 0.37 0.40 0.38 0.36
+//numbers = 0.03 0.24 0.33 0.33 0.38 0.63 0.79 0.55 0.34 0.14
 let numbers = (document.getElementById('numbers').value)
     .split(" ")
     .map(Number)
