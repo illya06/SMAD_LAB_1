@@ -1,7 +1,7 @@
 
 
 
-//numbers = 36 38 38 37 40 38 36
+//numbers = 0.36 0.38 0.38 0.37 0.40 0.38 0.36
 let numbers = (document.getElementById('numbers').value)
     .split(" ")
     .map(Number)
@@ -9,6 +9,7 @@ let numbers = (document.getElementById('numbers').value)
 
 //Unique numbers from output
 let uniqueNums = Array.from([...new Set(numbers)]);
+uniqueNums.sort(function (a, b) { return a - b; })
 
 //Number <-> frequency relation map
 let numsFrequency = new Map();
@@ -213,18 +214,18 @@ var chart = new Chart(cum, {
 let dataset2 = [];
 sum = 0;
 [...uniqueFrequencies].forEach(val => {
-    sum += val/numbers.length;
+    sum += val / numbers.length;
     dataset2.push(sum);
 })
 
 let text = [];
-for(i =0;i<uniqueNums.length;i++){
-    if(i==0)
-    text.push(`${uniqueNums[0]} - ${uniqueNums[1]}`);
-    else if(i==uniqueNums.length-1)
-    text.push(`${uniqueNums[uniqueNums.length-1]} - infinity`);
+for (i = 0; i < uniqueNums.length; i++) {
+    if (i == 0)
+        text.push(`${uniqueNums[0]} - ${uniqueNums[1]}`);
+    else if (i == uniqueNums.length - 1)
+        text.push(`${uniqueNums[uniqueNums.length - 1]} - infinity`);
     else
-    text.push(`${uniqueNums[i]} - ${uniqueNums[i+1]}`);
+        text.push(`${uniqueNums[i]} - ${uniqueNums[i + 1]}`);
 }
 
 var emp = document.getElementById('empirical').getContext('2d');
