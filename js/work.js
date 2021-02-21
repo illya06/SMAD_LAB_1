@@ -221,11 +221,11 @@ sum = 0;
 let text = [];
 for (i = 0; i < uniqueNums.length; i++) {
     if (i == 0)
-        text.push(`${uniqueNums[0]} - ${uniqueNums[1]}`);
+        text.push(`${uniqueNums[0]}-${uniqueNums[1]}`);
     else if (i == uniqueNums.length - 1)
-        text.push(`${uniqueNums[uniqueNums.length - 1]} - infinity`);
+        text.push(`${uniqueNums[uniqueNums.length - 1]}-infinity`);
     else
-        text.push(`${uniqueNums[i]} - ${uniqueNums[i + 1]}`);
+        text.push(`${uniqueNums[i]}-${uniqueNums[i + 1]}`);
 }
 
 var emp = document.getElementById('empirical').getContext('2d');
@@ -238,7 +238,7 @@ var chart = new Chart(emp, {
             borderWidth: 2,
             borderColor: 'black',
             barPercentage: 0.5,
-            barThickness: 165,
+            barThickness: 75,
             maxBarThickness: 180,
             minBarLength: 2,
             data: dataset2
