@@ -2,12 +2,42 @@
 // CHARTS
 //---------
 
+let sum = 0;
+let empiric_data = [];
+[...uniqueFrequencies].forEach(val => {
+    sum += val / numbers.length;
+    empiric_data.push(sum);
+})
+
+sum = 0;
+let cumulative_data = [];
+[...uniqueFrequencies].forEach(val => {
+    sum += val;
+    cumulative_data.push(sum);
+})
+
+let rel_poli_data = [];
+[...uniqueFrequencies].forEach(val => {
+    rel_poli_data.push(val/numbers.length);
+})
+
+let text = [];
+for (i = 0; i < uniqueNums.length; i++) {
+    if (i == 0)
+        text.push(`${uniqueNums[0]}-${uniqueNums[1]}`);
+    else if (i == uniqueNums.length - 1)
+        text.push(`${uniqueNums[uniqueNums.length - 1]}-infinity`);
+    else
+        text.push(`${uniqueNums[i]}-${uniqueNums[i + 1]}`);
+}
+
+
 //poligon
 var poli = document.getElementById('poligon').getContext('2d');
 var chart = new Chart(poli, {
     type: 'line',
     data: {
-        labels: [...uniqueNums],
+        labels: uniqueNums,
         datasets: [{
             label: 'Полігон частот',
             borderColor: 'black',
@@ -26,22 +56,18 @@ var chart = new Chart(poli, {
     }
 });
 
-//cumulative curve
-var cum = document.getElementById('cumulative').getContext('2d');
-let sum = 0;
-let dataset = [];
-[...uniqueFrequencies].forEach(val => {
-    sum += val;
-    dataset.push(sum);
-})
-var chart = new Chart(cum, {
+
+//poligon rel
+var poli_rel = document.getElementById('poligon_rel').getContext('2d');
+var chart = new Chart(poli_rel, {
     type: 'line',
     data: {
-        labels: [...uniqueNums],
+        labels: uniqueNums,
         datasets: [{
-            label: 'Кумулятивна крива',
+            label: 'Полігон частот (за відносними частотами)',
             borderColor: 'black',
-            data: dataset
+            data: rel_poli_data,
+            lineTension: 0
         }],
     },
     options: {
@@ -55,29 +81,56 @@ var chart = new Chart(cum, {
     }
 });
 
-//cumulative rel
+
+//cumulative curve
+var cum = document.getElementById('cumulative').getContext('2d');
+var chart = new Chart(cum, {
+    type: 'line',
+    data: {
+        labels: uniqueNums,
+        datasets: [{
+            label: 'Кумулятивна крива',
+            borderColor: 'black',
+            data: cumulative_data
+        }],
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 
 
+//cumulative curve rel
+var cum_rel = document.getElementById('cumulative_rel').getContext('2d');
+var chart = new Chart(cum_rel, {
+    type: 'line',
+    data: {
+        labels: uniqueNums,
+        datasets: [{
+            label: 'Кумулятивна крива (за відносними частотами)',
+            borderColor: 'black',
+            data: empiric_data
+        }],
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 
 
 //empirical function
-let dataset2 = [];
-sum = 0;
-[...uniqueFrequencies].forEach(val => {
-    sum += val / numbers.length;
-    dataset2.push(sum);
-})
-
-let text = [];
-for (i = 0; i < uniqueNums.length; i++) {
-    if (i == 0)
-        text.push(`${uniqueNums[0]}-${uniqueNums[1]}`);
-    else if (i == uniqueNums.length - 1)
-        text.push(`${uniqueNums[uniqueNums.length - 1]}-infinity`);
-    else
-        text.push(`${uniqueNums[i]}-${uniqueNums[i + 1]}`);
-}
-
 var emp = document.getElementById('empirical').getContext('2d');
 var chart = new Chart(emp, {
     type: 'bar',
@@ -91,7 +144,7 @@ var chart = new Chart(emp, {
             barThickness: 75,
             maxBarThickness: 180,
             minBarLength: 2,
-            data: dataset2
+            data: empiric_data
         }],
     },
     options: {
@@ -104,3 +157,6 @@ var chart = new Chart(emp, {
         }
     }
 });
+
+
+
