@@ -57,10 +57,10 @@ function main() {
     calcVariation();
 
     //calcInitialMoment
-    calcInitialMomentOfK(0);
+    calcInitialMomentOfK(3);
 
     //centralMoment
-    calcCentralMomentOfK(0);
+    calcCentralMomentOfK(3);
 
     //asymmetry
     calcAsymmetry();
