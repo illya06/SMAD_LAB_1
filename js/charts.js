@@ -18,7 +18,7 @@ let cumulative_data = [];
 
 let rel_poli_data = [];
 [...uniqueFrequencies].forEach(val => {
-    rel_poli_data.push(val/numbers.length);
+    rel_poli_data.push(val / numbers.length);
 })
 
 let text = [];
@@ -140,6 +140,7 @@ var chart = new Chart(emp, {
             label: 'Емпірична функція розподілу',
             borderWidth: 2,
             borderColor: 'black',
+            borderWidth:{ top:3, right:0, bottom:0, left:0 },
             barPercentage: 0.5,
             barThickness: 75,
             maxBarThickness: 180,
@@ -150,6 +151,9 @@ var chart = new Chart(emp, {
     options: {
         scales: {
             yAxes: [{
+                gridLines: {
+                    drawBorder: false,
+                },
                 ticks: {
                     beginAtZero: true
                 }
